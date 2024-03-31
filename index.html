@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Quiz de Doenças</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+
+    .container {
+      max-width: 100%;
+      padding: 20px;
+      box-sizing: border-box;
+    }
+
+    input[type="text"], button {
+      margin-top: 10px;
+      padding: 10px;
+      width: calc(100% - 20px);
+      box-sizing: border-box;
+    }
+
+    button {
+      background-color: #007bff;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #0056b3;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Quiz de Doenças</h2>
+    <p id="disease"></p>
+    <input type="text" id="answerInput" placeholder="Digite o vírus causador">
+    <button onclick="checkAnswer()">Verificar</button>
+    <p id="result"></p>
+    <button onclick="showAnswer()">Não sei</button>
+    <button onclick="nextQuestion()">Próxima Pergunta</button>
+  </div>
+
+  <script>
+    // Array de objetos contendo os pares vírus/doença
+    const diseases = [
+      { virus: "HIV", disease: "AIDS" },
+      { virus: "HPV", disease: "CÂNCER" },
+      { virus: "HERPES SIMPLEX", disease: "HERPES" },
+      { virus: "INFLUENZA", disease: "GRIPE" },
+      { virus: "RINOVÍRUS", disease: "RESFRIADO" },
+      { virus: "VARICELA ZOSTER", disease: "VARICELA" },
+      { virus: "PARAMYXOVIRUS", disease: "CAXUMBA" },
+      { virus: "CORONAVÍRUS", disease: "COVID 19" },
+      { virus: "AEROVÍRUS", disease: "DENGUE" },
+      { virus: "HEPATITE", disease: "HEPATITE" },
+      { virus: "FLAVIVÍRUS", disease: "FEBRE AMARELA" },
+      { virus: "ESTERIOVIRUS", disease: "POLIOMELITE" },
+      { virus: "MONKEYPOX", disease: "VARÍOLA DOS MACACOS" },
+      { virus: "EBOLA VÍRUS", disease: "EBOLA" },
+      { virus: "MORBILIVIRUS", disease: "SARAMPO" },
+      { virus: "RUBELLA VIRUS", disease: "RUBÉOLA" },
+      { virus: "LYSSAVIRUS", disease: "RAIVA" },
+      { virus: "EPSTEIN-BARR", disease: "MONUCLEOSE" }
+    ];
+
+    let currentQuestion = 0;
+
+    // Função para exibir a pergunta atual
+    function displayQuestion() {
+      const diseaseElement = document.getElementById("disease");
+      diseaseElement.textContent = `Qual vírus causa ${diseases[currentQuestion].disease}?`;
+    }
+
+    // Função para verificar a resposta do usuário
+    function checkAnswer() {
+      const userAnswer = document.getElementById("answerInput").value.toUpperCase();
+      const correctAnswer = diseases[currentQuestion].virus.toUpperCase();
+
+      if (userAnswer === correctAnswer) {
+        document.getElementById("result").textContent = "Correto!";
+      } else {
+        document.getElementById("result").textContent = "Incorreto. Tente novamente!";
+      }
+    }
+
+    // Função para exibir a resposta correta
+    function showAnswer() {
+      const correctAnswer = diseases[currentQuestion].virus;
+      document.getElementById("result").textContent = `A resposta correta é: ${correctAnswer}`;
+    }
+
+    // Função para avançar para a próxima pergunta
+    function nextQuestion() {
+      currentQuestion++;
+      if (currentQuestion < diseases.length) {
+        displayQuestion();
+        document.getElementById("answerInput").value = "";
+        document.getElementById("result").textContent = "";
+      } else {
+        alert("Parabéns! Você completou o quiz.");
+        // Pode adicionar mais ações aqui, como reiniciar o quiz ou redirecionar para outra página
+      }
+    }
+
+    // Iniciar o quiz exibindo a primeira pergunta
+    displayQuestion();
+  </script>
+</body>
+</html>
