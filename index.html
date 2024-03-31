@@ -67,7 +67,7 @@
       { virus: "MORBILIVIRUS", disease: "SARAMPO" },
       { virus: "RUBELLA VIRUS", disease: "RUBÉOLA" },
       { virus: "LYSSAVIRUS", disease: "RAIVA" },
-      { virus: "EPSTEIN-BARR", disease: "MONUCLEOSE" }
+      { virus: "EPSTEIN-BARR", disease: "MONONUCLEOSE" }
     ];
 
     let currentQuestion = 0;
@@ -80,7 +80,7 @@
 
     // Função para verificar a resposta do usuário
     function checkAnswer() {
-      const userAnswer = document.getElementById("answerInput").value.toUpperCase();
+      const userAnswer = document.getElementById("answerInput").value.trim().toUpperCase();
       const correctAnswer = diseases[currentQuestion].virus.toUpperCase();
 
       if (userAnswer === correctAnswer) {
